@@ -1,0 +1,311 @@
+/* todaytask.css – Main container */
+.todaytask-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+}
+
+/* Make sure all sections are visible */
+.task-section {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Section Header */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.section-header .section-icon {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.section-title h2 {
+    margin: 0;
+}
+
+.section-title p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Workout Progress Bar */
+.workout-progress-bar {
+    background: #e0e0e0;
+    height: 8px;
+    border-radius: 4px;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.workout-progress-bar .progress-fill {
+    background: #4CAF50;
+    height: 100%;
+    transition: width 0.3s;
+}
+
+/* Exercise Phase */
+.exercise-phase {
+    margin-bottom: 25px;
+}
+
+.phase-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.phase-header.warmup {
+    background: #e3f2fd;
+    border-left: 4px solid #2196F3;
+}
+
+.phase-header.basic {
+    background: #e8f5e9;
+    border-left: 4px solid #4CAF50;
+}
+
+.phase-header.advanced {
+    background: #fff3e0;
+    border-left: 4px solid #ff9800;
+}
+
+.phase-icon {
+    font-size: 1.5rem;
+}
+
+.phase-header h3 {
+    margin: 0;
+    flex: 1;
+}
+
+.phase-duration {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Exercise List */
+.exercise-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.exercise-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.exercise-item:hover {
+    background: #f0f0f0;
+    transform: translateX(5px);
+}
+
+.exercise-item.completed {
+    background: #e8f5e9;
+    opacity: 0.8;
+}
+
+.exercise-check {
+    font-size: 1.5rem;
+}
+
+.exercise-info {
+    flex: 1;
+}
+
+.exercise-name {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.exercise-meta {
+    display: flex;
+    gap: 15px;
+    font-size: 12px;
+    color: #666;
+}
+
+.view-detail-btn {
+    padding: 6px 12px;
+    background: #ff6b35;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.start-workout-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #ff6b35, #ff8c42);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: transform 0.3s;
+}
+
+.start-workout-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Progress bars for calories/water */
+.progress-container {
+    margin-top: 10px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.progress-bar {
+    background: #e0e0e0;
+    height: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    transition: width 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.8rem;
+}
+
+.calorie-fill {
+    background: linear-gradient(90deg, #ff6b35, #ff8c42);
+}
+
+.water-fill {
+    background: linear-gradient(90deg, #2196F3, #64B5F6);
+}
+
+.progress-status {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* Meal grid */
+.meal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.meal-card {
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.meal-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.meal-name {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.meal-desc {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* Header and overall progress */
+.task-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.overall-progress {
+    margin-top: 20px;
+}
+
+/* Motivation footer */
+.motivation-footer {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+/* Loading / error states */
+.loading-container, .no-data-container {
+    text-align: center;
+    padding: 50px;
+}
+
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #ff6b35;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .todaytask-container {
+        padding: 10px;
+    }
+    .task-section {
+        padding: 15px;
+    }
+    .meal-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .exercise-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    .exercise-meta {
+        justify-content: center;
+    }
+}

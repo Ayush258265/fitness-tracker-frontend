@@ -1,0 +1,271 @@
+/* workoutStats.css */
+.workout-stats-container {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    margin-top: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.stats-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.stats-header h2 {
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.stats-header p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Stats Cards Row */
+.stats-cards-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-emoji {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.stat-label {
+    font-size: 12px;
+    opacity: 0.9;
+    margin-top: 5px;
+}
+
+.stat-sub {
+    font-size: 10px;
+    opacity: 0.7;
+    margin-top: 5px;
+}
+
+/* Streak Ring */
+.streak-ring-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.streak-ring {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff6b35, #ff8c42);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 5px 20px rgba(255,107,53,0.3);
+}
+
+.streak-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.streak-label {
+    font-size: 12px;
+}
+
+.streak-goal {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #666;
+}
+
+/* Bar Chart */
+.bar-chart-section {
+    margin-bottom: 30px;
+}
+
+.bar-chart-section h3 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.bar-chart {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 220px;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 15px;
+}
+
+.bar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.bar-label {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #666;
+    font-size: 12px;
+}
+
+.bar {
+    width: 40px;
+    background: #ff6b35;
+    border-radius: 8px 8px 0 0;
+    transition: height 0.3s;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.bar-value {
+    position: absolute;
+    top: -20px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #ff6b35;
+}
+
+.bar-calories {
+    font-size: 10px;
+    color: #999;
+    margin-top: 5px;
+    text-align: center;
+}
+
+/* Weekly Summary */
+.weekly-summary {
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.weekly-summary h3 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 16px;
+}
+
+.summary-stats {
+    display: flex;
+    justify-content: space-around;
+}
+
+.summary-item {
+    text-align: center;
+}
+
+.summary-item span {
+    display: block;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.summary-item strong {
+    font-size: 18px;
+    color: #ff6b35;
+}
+
+/* Motivation Messages */
+.motivation-message {
+    text-align: center;
+    padding: 20px;
+    background: #e3f2fd;
+    border-radius: 12px;
+    color: #1976d2;
+}
+
+.streak-message {
+    text-align: center;
+    padding: 15px;
+    background: linear-gradient(135deg, #ff6b35, #ff8c42);
+    color: white;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+/* Loading State */
+.stats-loading {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 20px;
+}
+
+.stats-loading .loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #ff6b35;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error State */
+.stats-error {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 20px;
+    color: #999;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .stats-cards-row {
+        gap: 10px;
+    }
+    
+    .stat-value {
+        font-size: 1.5rem;
+    }
+    
+    .bar {
+        width: 25px;
+    }
+    
+    .summary-stats {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .bar-chart {
+        height: 180px;
+    }
+}
