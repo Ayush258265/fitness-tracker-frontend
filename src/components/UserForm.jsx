@@ -181,11 +181,10 @@
 
 // export default UserForm;
 
+
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import API_BASE_URL from "../config/api";
-import API_BASE_URL from "../config/api";
-
 import "../styles/user.css";
 
 function UserForm() {
@@ -200,12 +199,10 @@ function UserForm() {
         goal: "",
     });
     const [isLoading, setIsLoading] = useState(false);
-    const [isUpdating, setIsUpdating] = useState(false);
 
     useEffect(() => {
         const userId = localStorage.getItem("userId");
         if (userId) {
-            setIsUpdating(true);
             fetch(`${API_BASE_URL}/user/get/user/${userId}`)
                 .then(res => res.json())
                 .then(data => {
