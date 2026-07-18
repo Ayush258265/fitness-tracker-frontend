@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/exerciselibrary.css";
+import API_BASE_URL from "../config/api";
 
 function ExerciseLibrary() {
     const [exercises, setExercises] = useState([]);
@@ -18,12 +19,12 @@ function ExerciseLibrary() {
     const fetchAllExercises = async () => {
         try {
             setIsLoading(true);
-            const response = await fetch("http://localhost:8080/api/workout/all");
-            
+            const response = await fetch(`${API_BASE_URL}/api/workout/all`);
+
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            
+
             const data = await response.json();
             console.log("Exercises loaded:", data.length);
             setExercises(data);
@@ -53,7 +54,7 @@ function ExerciseLibrary() {
 
         // Filter by search term
         if (searchTerm) {
-            filtered = filtered.filter(ex => 
+            filtered = filtered.filter(ex =>
                 ex.exerciseName && ex.exerciseName.toLowerCase().includes(searchTerm.toLowerCase())
             );
         }
@@ -67,7 +68,7 @@ function ExerciseLibrary() {
 
     // Get phase icon
     const getPhaseIcon = (phase) => {
-        switch(phase) {
+        switch (phase) {
             case "WARMUP": return "🏃";
             case "BASIC": return "💪";
             case "ADVANCED": return "🔥";
@@ -77,7 +78,7 @@ function ExerciseLibrary() {
 
     // Get category badge color
     const getCategoryColor = (category) => {
-        switch(category) {
+        switch (category) {
             case "UNDERWEIGHT": return "#2196F3";
             case "NORMAL": return "#4CAF50";
             case "OVERWEIGHT": return "#ff9800";
@@ -106,8 +107,8 @@ function ExerciseLibrary() {
                     🔄 Try Again
                 </button>
                 <div className="debug-info">
-                    <p>Make sure backend is running on port 8080</p>
-                    <p>Check endpoint: GET http://localhost:8080/api/workout/all</p>
+                    <p>Make sure the backend server is running.</p>
+                    <p>Check endpoint: GET {`${API_BASE_URL}/api/workout/all`}</p>
                 </div>
             </div>
         );
@@ -147,8 +148,8 @@ function ExerciseLibrary() {
 
                 <div className="filter-group">
                     <label>🏷️ BMI Category</label>
-                    <select 
-                        value={selectedCategory} 
+                    <select
+                        value={selectedCategory}
                         onChange={(e) => setSelectedCategory(e.target.value)}
                         className="filter-select"
                     >
@@ -162,8 +163,8 @@ function ExerciseLibrary() {
 
                 <div className="filter-group">
                     <label>⚡ Phase</label>
-                    <select 
-                        value={selectedPhase} 
+                    <select
+                        value={selectedPhase}
                         onChange={(e) => setSelectedPhase(e.target.value)}
                         className="filter-select"
                     >
@@ -189,14 +190,14 @@ function ExerciseLibrary() {
                             <div className="exercise-icon">
                                 {getPhaseIcon(exercise.phase)}
                             </div>
-                            <div 
+                            <div
                                 className="category-badge"
                                 style={{ backgroundColor: getCategoryColor(exercise.bmiCategory) }}
                             >
                                 {exercise.bmiCategory}
                             </div>
                         </div>
-                        
+
                         <div className="exercise-body">
                             <h3>{exercise.exerciseName}</h3>
                             <div className="exercise-phase">

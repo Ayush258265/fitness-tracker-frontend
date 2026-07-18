@@ -5,7 +5,7 @@ function BMI({ userId }) {
 
     useEffect(() => {
         if (userId) {
-            fetch(`http://localhost:8080/users/bmi/${userId}`)
+            fetch(`${API_BASE_URL}/${userId}`)
                 .then((res) => res.json())
                 .then((data) => {
                     console.log("BMI API Response:", data);

@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import "../styles/calorie.css";
+import API_BASE_URL from "../config/api";
 
 function CalorieTracker({ userId }) {
     const [calorieData, setCalorieData] = useState({
@@ -19,9 +20,9 @@ function CalorieTracker({ userId }) {
     // Wrap fetchCalorieData in useCallback
     const fetchCalorieData = useCallback(async () => {
         if (!userId) return;
-        
+
         try {
-            const response = await fetch(`http://localhost:8080/calorie/today/${userId}`);
+            const response = await fetch(`${API_BASE_URL}/calorie/today/${userId}`);
             const data = await response.json();
             if (response.ok) {
                 setCalorieData(data);
@@ -54,7 +55,7 @@ function CalorieTracker({ userId }) {
         };
 
         try {
-            const response = await fetch(`http://localhost:8080/calorie/add/consumed/${userId}`, {
+            const response = await fetch(`${API_BASE_URL}/calorie/add/consumed/${userId}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -90,7 +91,7 @@ function CalorieTracker({ userId }) {
         };
 
         try {
-            const response = await fetch(`http://localhost:8080/calorie/add/burned/${userId}`, {
+            const response = await fetch(`${API_BASE_URL}/calorie/add/burned/${userId}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -173,9 +174,9 @@ function CalorieTracker({ userId }) {
                     <span>{Math.min(Math.round(progress), 100)}%</span>
                 </div>
                 <div className="progress-bar">
-                    <div 
+                    <div
                         className="progress-fill"
-                        style={{ 
+                        style={{
                             width: `${Math.min(progress, 100)}%`,
                             background: progress > 100 ? "#f44336" : "#4CAF50"
                         }}
