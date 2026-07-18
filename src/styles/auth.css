@@ -279,3 +279,14 @@
         font-size: 1.6rem;
     }
 }
+
+.loading-message {
+    text-align: center;
+    padding: 10px;
+    background: #fff3cd;
+    color: #856404;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    border-left: 4px solid #ffc107;
+}

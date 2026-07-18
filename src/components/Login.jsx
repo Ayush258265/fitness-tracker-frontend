@@ -177,6 +177,7 @@ function Login() {
     const [name, setName] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const [loadingMessage, setLoadingMessage] = useState("");
     const navigate = useNavigate();
 
     React.useEffect(() => {
@@ -190,14 +191,23 @@ function Login() {
         e.preventDefault();
         setLoading(true);
         setError("");
+        setLoadingMessage("⏳ Waking up server... (may take 30-60 seconds)");
 
-        if (isLogin) {
-            try {
+        // Create abort controller for timeout
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 90000); // 90 second timeout
+
+        try {
+            if (isLogin) {
                 const response = await fetch(`${API_BASE_URL}/auth/login`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email, password })
+                    body: JSON.stringify({ email, password }),
+                    signal: controller.signal
                 });
+
+                clearTimeout(timeoutId);
+                setLoadingMessage("");
 
                 const contentType = response.headers.get("content-type");
                 let data;
@@ -216,12 +226,7 @@ function Login() {
                 } else {
                     setError(typeof data === 'string' ? data : (data.message || "Invalid email or password"));
                 }
-            } catch (err) {
-                console.error("Login error:", err);
-                setError("Login failed. Please try again.");
-            }
-        } else {
-            try {
+            } else {
                 const response = await fetch(`${API_BASE_URL}/auth/signup`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -235,8 +240,12 @@ function Login() {
                         weight: 70,
                         goal: "FIT",
                         dietType: "VEG"
-                    })
+                    }),
+                    signal: controller.signal
                 });
+
+                clearTimeout(timeoutId);
+                setLoadingMessage("");
 
                 const contentType = response.headers.get("content-type");
                 let data;
@@ -257,9 +266,15 @@ function Login() {
                 } else {
                     setError(typeof data === 'string' ? data : (data.message || "Signup failed"));
                 }
-            } catch (err) {
-                console.error("Signup error:", err);
-                setError("Signup failed. Please try again.");
+            }
+        } catch (err) {
+            clearTimeout(timeoutId);
+            setLoadingMessage("");
+            if (err.name === 'AbortError') {
+                setError("⏳ Server is waking up. Please wait 30 seconds and try again.");
+            } else {
+                console.error("Auth error:", err);
+                setError(isLogin ? "Login failed. Please try again." : "Signup failed. Please try again.");
             }
         }
         setLoading(false);
@@ -305,6 +320,10 @@ function Login() {
                             required
                         />
                     </div>
+
+                    {loading && loadingMessage && (
+                        <div className="loading-message">{loadingMessage}</div>
+                    )}
 
                     {error && <div className="error-message">{error}</div>}
 
