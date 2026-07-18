@@ -254,8 +254,8 @@
 
 // export default UserInfo;
 
-
 import { useState, useEffect, useCallback } from "react";
+import API_BASE_URL from "../config/api";
 import "../styles/user.css";
 
 function UserInfo() {
@@ -291,7 +291,7 @@ function UserInfo() {
     const fetchUser = useCallback((id) => {
         if (!id) return;
         setIsLoading(true);
-        fetch(`http://localhost:8080/user/get/user/${id}`)
+        fetch(`${API_BASE_URL}/user/get/user/${id}`)
             .then(res => {
                 if (!res.ok) throw new Error("User not found");
                 return res.json();
@@ -311,7 +311,7 @@ function UserInfo() {
         if (!id) return;
         setStatsLoading(true);
         const target = getTargetByDiet(dietType);
-        fetch(`http://localhost:8080/calorie/today/${id}`)
+        fetch(`${API_BASE_URL}/calorie/today/${id}`)
             .then(res => res.json())
             .then(data => {
                 const burned = data.burned || 0;
@@ -358,7 +358,7 @@ function UserInfo() {
             goal: user.goal,
             dietType: user.dietType
         };
-        const url = `http://localhost:8080/user/update/user/${userId}`;
+        const url = `${API_BASE_URL}/user/update/user/${userId}`;
         fetch(url, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
@@ -391,7 +391,6 @@ function UserInfo() {
 
     return (
         <div className="user-info-modern">
-            {/* Header */}
             <div className="info-header">
                 <h2>👤 My Profile</h2>
                 {!isEditing && (
@@ -402,7 +401,6 @@ function UserInfo() {
             {error && <div className="error-message">{error}</div>}
             {(isLoading || statsLoading) && <div className="loading-spinner">Loading...</div>}
 
-            {/* Calorie Stats Cards */}
             <div className="stats-dashboard">
                 <div className="stat-card">
                     <div className="stat-icon">🍽️</div>
@@ -434,7 +432,6 @@ function UserInfo() {
                 </div>
             </div>
 
-            {/* BMI Card */}
             {bmi && (
                 <div className="bmi-card-modern">
                     <div className="bmi-header">
@@ -452,7 +449,6 @@ function UserInfo() {
                 </div>
             )}
 
-            {/* Profile Display / Edit Form */}
             {!isEditing ? (
                 <div className="profile-display">
                     <div className="info-row"><strong>Name:</strong> {user.user}</div>

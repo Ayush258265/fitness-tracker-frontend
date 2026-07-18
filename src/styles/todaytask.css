@@ -1,4 +1,5 @@
 /* todaytask.css – Main container */
+/*
 .todaytask-container {
     max-width: 800px;
     margin: 0 auto;
@@ -6,7 +7,6 @@
     width: 100%;
 }
 
-/* Make sure all sections are visible */
 .task-section {
     background: white;
     border-radius: 15px;
@@ -16,7 +16,6 @@
     overflow-x: auto;
 }
 
-/* Section Header */
 .section-header {
     display: flex;
     align-items: center;
@@ -39,7 +38,7 @@
     color: #666;
 }
 
-/* Workout Progress Bar */
+
 .workout-progress-bar {
     background: #e0e0e0;
     height: 8px;
@@ -54,7 +53,6 @@
     transition: width 0.3s;
 }
 
-/* Exercise Phase */
 .exercise-phase {
     margin-bottom: 25px;
 }
@@ -97,7 +95,6 @@
     color: #666;
 }
 
-/* Exercise List */
 .exercise-list {
     display: flex;
     flex-direction: column;
@@ -174,7 +171,6 @@
     transform: translateY(-2px);
 }
 
-/* Progress bars for calories/water */
 .progress-container {
     margin-top: 10px;
 }
@@ -217,7 +213,6 @@
     color: #666;
 }
 
-/* Meal grid */
 .meal-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -248,7 +243,6 @@
     color: #666;
 }
 
-/* Header and overall progress */
 .task-header {
     text-align: center;
     margin-bottom: 30px;
@@ -258,7 +252,6 @@
     margin-top: 20px;
 }
 
-/* Motivation footer */
 .motivation-footer {
     text-align: center;
     padding: 20px;
@@ -268,7 +261,6 @@
     margin-top: 20px;
 }
 
-/* Loading / error states */
 .loading-container, .no-data-container {
     text-align: center;
     padding: 50px;
@@ -289,7 +281,6 @@
     100% { transform: rotate(360deg); }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .todaytask-container {
         padding: 10px;
@@ -307,5 +298,377 @@
     }
     .exercise-meta {
         justify-content: center;
+    }
+}*/
+
+.todaytask-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.task-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 20px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(102,126,234,0.3);
+}
+
+.task-header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 6px;
+}
+
+.task-header p {
+    opacity: 0.9;
+}
+
+.overall-progress {
+    margin-top: 18px;
+}
+
+.overall-progress .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+}
+
+.overall-progress .progress-bar {
+    background: rgba(255,255,255,0.2);
+    border-radius: 50px;
+    height: 8px;
+    overflow: hidden;
+}
+
+.overall-progress .progress-fill {
+    background: #ffd700;
+    height: 100%;
+    border-radius: 50px;
+    transition: width 0.5s ease;
+}
+
+.task-section {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    transition: transform 0.2s;
+}
+
+.task-section:hover {
+    transform: translateX(3px);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.section-header .section-icon {
+    font-size: 2rem;
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.section-title h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #1a1a2e;
+}
+
+.section-title p {
+    margin: 4px 0 0;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.workout-progress-bar {
+    background: #e8e8e8;
+    height: 6px;
+    border-radius: 50px;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.workout-progress-bar .progress-fill {
+    background: linear-gradient(90deg, #4CAF50, #8BC34A);
+    height: 100%;
+    transition: width 0.4s ease;
+}
+
+.exercise-phase {
+    margin-bottom: 25px;
+}
+
+.phase-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+.phase-header.warmup {
+    background: #e3f2fd;
+    border-left: 4px solid #2196F3;
+}
+
+.phase-header.basic {
+    background: #e8f5e9;
+    border-left: 4px solid #4CAF50;
+}
+
+.phase-header.advanced {
+    background: #fff3e0;
+    border-left: 4px solid #ff9800;
+}
+
+.phase-icon {
+    font-size: 1.3rem;
+}
+
+.phase-header h3 {
+    margin: 0;
+    flex: 1;
+    font-size: 1rem;
+}
+
+.phase-duration {
+    font-size: 0.75rem;
+    color: #888;
+}
+
+.exercise-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.exercise-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid transparent;
+}
+
+.exercise-item:hover {
+    background: #f0f0f0;
+    transform: translateX(5px);
+    border-color: #ff6b35;
+}
+
+.exercise-item.completed {
+    background: #e8f5e9;
+    opacity: 0.85;
+}
+
+.exercise-check {
+    font-size: 1.3rem;
+}
+
+.exercise-info {
+    flex: 1;
+}
+
+.exercise-name {
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 4px;
+}
+
+.exercise-meta {
+    display: flex;
+    gap: 14px;
+    font-size: 0.75rem;
+    color: #888;
+}
+
+.view-detail-btn {
+    padding: 6px 14px;
+    background: #ff6b35;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: background 0.3s;
+}
+
+.view-detail-btn:hover {
+    background: #e55a2b;
+}
+
+.start-workout-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #ff6b35, #ff8c42);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(255,107,53,0.3);
+}
+
+.start-workout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255,107,53,0.4);
+}
+
+.progress-container {
+    margin-top: 10px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.progress-bar {
+    background: #e8e8e8;
+    height: 10px;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    transition: width 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.7rem;
+}
+
+.calorie-fill {
+    background: linear-gradient(90deg, #ff6b35, #ff8c42);
+}
+
+.water-fill {
+    background: linear-gradient(90deg, #2196F3, #64B5F6);
+}
+
+.progress-status {
+    margin-top: 6px;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.meal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.meal-card {
+    background: #f8f9fa;
+    padding: 16px;
+    border-radius: 14px;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.meal-card:hover {
+    transform: translateY(-3px);
+}
+
+.meal-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.meal-name {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+}
+
+.meal-desc {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.motivation-footer {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border-radius: 16px;
+    margin-top: 20px;
+    font-weight: 500;
+}
+
+.loading-container, .no-data-container {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #ff6b35;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+    .todaytask-container {
+        padding: 10px;
+    }
+    .task-section {
+        padding: 16px;
+    }
+    .meal-grid {
+        grid-template-columns: 1fr;
+    }
+    .exercise-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    .exercise-meta {
+        justify-content: center;
+    }
+    .task-header {
+        padding: 20px 15px;
+    }
+    .task-header h1 {
+        font-size: 1.4rem;
     }
 }
