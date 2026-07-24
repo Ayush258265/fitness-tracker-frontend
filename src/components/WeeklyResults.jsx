@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import API_BASE_URL from "../config/api";
 import "../styles/weeklyResults.css";
@@ -8,13 +8,8 @@ function WeeklyResults({ userId }) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        if (userId) {
-            fetchWeeklyResults();
-        }
-    }, [userId]);
-
-    const fetchWeeklyResults = async () => {
+    const fetchWeeklyResults = useCallback(async () => {
+        if (!userId) return;
         setLoading(true);
         setError(null);
         try {
@@ -31,9 +26,12 @@ function WeeklyResults({ userId }) {
         } finally {
             setLoading(false);
         }
-    };
+    }, [userId]);
 
-    // Loading state
+    useEffect(() => {
+        fetchWeeklyResults();
+    }, [fetchWeeklyResults]);
+
     if (loading) {
         return (
             <div className="weekly-loading">
@@ -43,7 +41,6 @@ function WeeklyResults({ userId }) {
         );
     }
 
-    // Error state
     if (error) {
         return (
             <div className="weekly-error">
@@ -53,7 +50,6 @@ function WeeklyResults({ userId }) {
         );
     }
 
-    // No data state
     if (!data || data.totalWorkouts === 0) {
         return (
             <div className="weekly-empty">
@@ -67,14 +63,12 @@ function WeeklyResults({ userId }) {
         );
     }
 
-    // Format duration
     const formatDuration = (seconds) => {
         const mins = Math.floor(seconds / 60);
         const secs = seconds % 60;
         return mins > 0 ? `${mins} min ${secs} sec` : `${secs} sec`;
     };
 
-    // Custom tooltip for chart
     const CustomTooltip = ({ active, payload }) => {
         if (active && payload && payload.length) {
             return (
@@ -90,13 +84,11 @@ function WeeklyResults({ userId }) {
 
     return (
         <div className="weekly-results-container">
-            {/* Header */}
             <div className="weekly-header">
                 <h2>📊 Weekly Results</h2>
                 <p>Your fitness progress for this week</p>
             </div>
 
-            {/* Stat Cards */}
             <div className="weekly-stats">
                 <div className="stat-card">
                     <div className="stat-icon">💪</div>
@@ -128,7 +120,6 @@ function WeeklyResults({ userId }) {
                 </div>
             </div>
 
-            {/* Chart Section */}
             <div className="weekly-chart">
                 <h3>Daily Calories Burned</h3>
                 <ResponsiveContainer width="100%" height={300}>
@@ -148,7 +139,6 @@ function WeeklyResults({ userId }) {
                 </ResponsiveContainer>
             </div>
 
-            {/* Weekly Summary Text */}
             <div className="weekly-summary">
                 <p>
                     {data.totalWorkouts === 1 ? (
@@ -163,7 +153,6 @@ function WeeklyResults({ userId }) {
                 </p>
             </div>
 
-            {/* Refresh Button */}
             <button className="refresh-btn" onClick={fetchWeeklyResults}>
                 🔄 Refresh
             </button>
