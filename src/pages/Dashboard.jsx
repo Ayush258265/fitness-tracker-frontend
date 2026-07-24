@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API_BASE_URL from "../config/api";
-import WorkoutStats from "../components/WorkoutStats";
-import WeeklyResults from "../components/WeeklyResults"; // ✅ ADD THIS IMPORT
+import WeeklyResults from "../components/WeeklyResults"; // ✅ Only keep this
 import "../styles/dashboard.css";
 
 function Dashboard() {
@@ -111,9 +110,7 @@ function Dashboard() {
                 </div>
             </div>
 
-            <WorkoutStats userId={user.id} />
-
-            {/* ✅ ADD WEEKLY RESULTS COMPONENT HERE */}
+            {/* ✅ WEEKLY RESULTS ONLY (REMOVED WorkoutStats) */}
             <WeeklyResults userId={user.id} />
 
             <div className="action-buttons">
